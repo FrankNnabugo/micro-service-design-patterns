@@ -1,0 +1,54 @@
+{
+  "namespace": "com.core.avro",
+  "type": "record",
+  "name": "ProductEventAvro",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "description",
+      "type": "string"
+    },
+    {
+      "name": "category",
+      "type": "string"
+    },
+    {
+      "name": "price",
+    "type": {
+      "type": "bytes",
+      "logicalType": "decimal",
+      "precision": 19,
+      "scale": 2
+    }
+    },
+    {
+      "name": "currency",
+      "type": "string"
+    },
+    {
+      "name": "availability",
+      "type": "string"
+    },
+    {
+      "name": "createdAt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "updatedAt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    }
+  ]
+}

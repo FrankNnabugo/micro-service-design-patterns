@@ -1,0 +1,117 @@
+
+services:
+# database-write:
+#    image: postgres:15
+#    container_name: postgres-db-write
+#    hostname: postgres-db-write
+#    ports:
+#      - "5431:5431"
+#    restart: always
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: secret
+#      POSTGRES_DB: product-write
+#    volumes:
+#      - database-write:/var/lib/postgresql/data
+#    networks:
+#      - micro-service-network
+#
+#
+# database-read:
+#   image: postgres:15
+#   container_name: postgres-db-read
+#   hostname: postgres-db-read
+#   ports:
+#     - "5432:5432"
+#   restart: always
+#   environment:
+#     POSTGRES_USER: postgres
+#     POSTGRES_PASSWORD: secret
+#     POSTGRES_DB: product-read
+#   volumes:
+#     - database-read:/var/lib/postgresql/data
+#   networks:
+#     - micro-service-network
+
+
+ kafka:
+  image: confluentinc/cp-kafka:7.6.0
+  hostname: kafka
+  container_name: kafka
+  ports:
+    - "9092:9092"
+    - "29092:29092"
+  environment:
+    KAFKA_NODE_ID: 1
+    KAFKA_PROCESS_ROLES: broker,controller
+    KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:29093
+    KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:29092,CONTROLLER://0.0.0.0:29093
+    KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+    KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,CONTROLLER:PLAINTEXT
+    KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+    KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+    KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+    KAFKA_NUM_PARTITIONS: 1
+  restart: unless-stopped
+  volumes:
+    - kafka-data:/var/lib/kafka/data
+  networks:
+    - micro-service-network
+  healthcheck:
+    test: [ "CMD", "bash", "-c", "echo > /dev/tcp/localhost/9092" ]
+    interval: 10s
+    retries: 5
+
+ schema-registry:
+  image: confluentinc/cp-schema-registry:5.4.0
+  container_name: schema-registry
+  hostname: schema-registry
+  ports:
+    - "8081:8081"
+  depends_on:
+    kafka:
+      condition: service_healthy
+  environment:
+    SCHEMA_REGISTRY_HOST_NAME: schema-registry
+    SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+    SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka:9092
+  networks:
+    - micro-service-network
+  healthcheck:
+    test: [ "CMD", "bash", "-c", "echo > /dev/tcp/localhost/8081" ]
+    interval: 10s
+    retries: 5
+
+
+ control-center:
+  image: confluentinc/cp-enterprise-control-center:5.4.0
+  container_name: control-center
+  hostname: control-center
+  depends_on:
+   kafka:
+     condition: service_healthy
+   schema-registry:
+     condition: service_healthy
+  restart: unless-stopped
+  ports:
+    - "9021:9021"
+  environment:
+    CONTROL_CENTER_BOOTSTRAP_SERVERS: kafka:9092
+    CONTROL_CENTER_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+    CONTROL_CENTER_REPLICATION_FACTOR: 1
+    CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 1
+    CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
+    CONFLUENT_METRICS_TOPIC_REPLICATION: 1
+    PORT: 9021
+  networks:
+    - micro-service-network
+
+volumes:
+  kafka-data:
+
+networks:
+  micro-service-network:
+    name: micro-service-network
+    driver: bridge
