@@ -1,13 +1,13 @@
 server:
   port:
-    8080
+    9091
 
 spring:
   application:
-    name: command-ms
+    name: payment-ms
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/product-write
+    url: jdbc:postgresql://localhost:5432/payment_default
     username: postgres
     password: franksam
     driver-class-name: org.postgresql.Driver
@@ -28,9 +28,3 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       auto-commit: true
-
-  kafka:
-    bootstrap-servers: localhost:29092
-    topics:
-      product: product
-    schema-registry-url: http://localhost:8082
