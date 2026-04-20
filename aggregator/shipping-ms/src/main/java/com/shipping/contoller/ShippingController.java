@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class ShippingController {
     private final ShippingServiceImpl shippingServiceImpl;
 
-    @PostMapping
+    @PostMapping("/create-shipping")
     public ResponseEntity<ShippingResponse> createShipping(@RequestBody ShippingRequest request){
         ShippingResponse shipping = shippingServiceImpl.createShipping(request);
         return new ResponseEntity<>(shipping, HttpStatus.OK);

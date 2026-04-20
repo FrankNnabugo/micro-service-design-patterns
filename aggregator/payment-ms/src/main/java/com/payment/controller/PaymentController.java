@@ -2,7 +2,6 @@ package com.payment.controller;
 
 import com.payment.dto.PaymentRequest;
 import com.payment.dto.PaymentResponse;
-import com.payment.entity.Payment;
 import com.payment.service.PaymentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
     private final PaymentServiceImpl paymentServiceImpl;
 
-    @PostMapping
+    @PostMapping("/create-payment")
     public ResponseEntity<PaymentResponse> createPayment(@RequestBody PaymentRequest request){
         PaymentResponse payment = paymentServiceImpl.createPayment(request);
         return new ResponseEntity<>(payment, HttpStatus.OK);
