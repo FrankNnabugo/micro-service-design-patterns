@@ -2,21 +2,21 @@ package com.query.event;
 
 
 import com.core.ProductCreatedEvent;
-import com.core.ProductDeletedEvent;
-import com.core.avro.ProductEventAvro;
+import com.core.ProductEventBase;
+import com.core.ProductUpdatedEvent;
+import com.core.avro.ProductCreatedEventAvro;
+import com.core.avro.ProductDeletedEventAvro;
+import com.core.avro.ProductUpdatedEventAvro;
 import com.query.entity.Product;
 import com.query.repository.ProductRepository;
+import com.query.utility.EventMapper;
 import lombok.RequiredArgsConstructor;
-import org.apache.avro.Conversions;
-import org.apache.avro.LogicalTypes;
-import org.apache.avro.Schema;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 
 @Service
 @KafkaListener(
@@ -25,54 +25,31 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class ProductConsumer {
     private final ProductRepository productRepository;
+    private final EventMapper eventMapper;
 
     @KafkaHandler
-    public void consumeProductCreatedEvent(@Payload ProductEventAvro avro, Acknowledgment ack){
-        ProductCreatedEvent event = mapToEvent(avro);
+    public void consumeProductCreatedEvent(@Payload ProductCreatedEventAvro avro, Acknowledgment ack){
+        ProductCreatedEvent event = eventMapper.toCreatedEvent(avro);
         Product product = mapToEntity(event);
         productRepository.save(product);
         ack.acknowledge();
     }
 
     @KafkaHandler
-    public void consumeProductUpdatedEvent(@Payload ProductEventAvro avro, Acknowledgment ack){
-        ProductCreatedEvent event = mapToEvent(avro);
+    public void consumeProductUpdatedEvent(@Payload ProductUpdatedEventAvro avro, Acknowledgment ack){
+        ProductUpdatedEvent event = eventMapper.toUpdatedEvent(avro);
         Product product = mapToEntity(event);
         productRepository.save(product);
         ack.acknowledge();
     }
     @KafkaHandler
-    public void consumeProductDeletedEvent(@Payload ProductDeletedEvent event, Acknowledgment ack){
-        Product product = productRepository.findById(event.id()).orElseThrow();
+    public void consumeProductDeletedEvent(@Payload ProductDeletedEventAvro avro, Acknowledgment ack){
+        Product product = productRepository.findById(avro.getId().toString()).orElseThrow();
         productRepository.delete(product);
+        ack.acknowledge();
     }
 
-    private ProductCreatedEvent mapToEvent(ProductEventAvro avro) {
-        Conversions.DecimalConversion conversion = new Conversions.DecimalConversion();
-
-        Schema.Field field = ProductEventAvro.getClassSchema().getField("price");
-        LogicalTypes.Decimal decimalType =
-                (LogicalTypes.Decimal) field.schema().getLogicalType();
-
-        BigDecimal price = conversion.fromBytes(
-                avro.getPrice(),
-                field.schema(),
-                decimalType
-        );
-        return new ProductCreatedEvent(
-                avro.getId().toString(),
-                avro.getName().toString(),
-                avro.getDescription().toString(),
-                avro.getCategory().toString(),
-                price,
-                avro.getCurrency().toString(),
-                avro.getAvailability().toString(),
-                avro.getCreatedAt(),
-                avro.getUpdatedAt()
-        );
-    }
-
-    private Product mapToEntity(ProductCreatedEvent event){
+    private Product mapToEntity(ProductEventBase event){
         Product product = new Product();
         product.setId(event.id());
         product.setName(event.name());
@@ -85,5 +62,4 @@ public class ProductConsumer {
         product.setUpdatedAt(event.updatedAt());
         return product;
     }
-
 }

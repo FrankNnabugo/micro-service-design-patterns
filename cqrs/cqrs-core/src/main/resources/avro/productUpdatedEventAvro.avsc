@@ -1,7 +1,7 @@
 {
   "namespace": "com.core.avro",
   "type": "record",
-  "name": "ProductEventAvro",
+  "name": "ProductUpdatedEventAvro",
   "fields": [
     {
       "name": "id",
@@ -21,12 +21,12 @@
     },
     {
       "name": "price",
-    "type": {
-      "type": "bytes",
-      "logicalType": "decimal",
-      "precision": 19,
-      "scale": 2
-    }
+      "type": {
+        "type": "bytes",
+        "logicalType": "decimal",
+        "precision": 19,
+        "scale": 2
+      }
     },
     {
       "name": "currency",

@@ -13,11 +13,11 @@ import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
-public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 276503750107702853L;
+public class ProductUpdatedEventAvro extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = -7101971200348215060L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ProductEventAvro\",\"namespace\":\"com.core.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"description\",\"type\":\"string\"},{\"name\":\"category\",\"type\":\"string\"},{\"name\":\"price\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":19,\"scale\":2}},{\"name\":\"currency\",\"type\":\"string\"},{\"name\":\"availability\",\"type\":\"string\"},{\"name\":\"createdAt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"updatedAt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ProductUpdatedEventAvro\",\"namespace\":\"com.core.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"description\",\"type\":\"string\"},{\"name\":\"category\",\"type\":\"string\"},{\"name\":\"price\",\"type\":{\"type\":\"bytes\",\"logicalType\":\"decimal\",\"precision\":19,\"scale\":2}},{\"name\":\"currency\",\"type\":\"string\"},{\"name\":\"availability\",\"type\":\"string\"},{\"name\":\"createdAt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"updatedAt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -26,17 +26,17 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
     MODEL$.addLogicalTypeConversion(new org.apache.avro.Conversions.DecimalConversion());
   }
 
-  private static final BinaryMessageEncoder<ProductEventAvro> ENCODER =
+  private static final BinaryMessageEncoder<ProductUpdatedEventAvro> ENCODER =
       new BinaryMessageEncoder<>(MODEL$, SCHEMA$);
 
-  private static final BinaryMessageDecoder<ProductEventAvro> DECODER =
+  private static final BinaryMessageDecoder<ProductUpdatedEventAvro> DECODER =
       new BinaryMessageDecoder<>(MODEL$, SCHEMA$);
 
   /**
    * Return the BinaryMessageEncoder instance used by this class.
    * @return the message encoder used by this class
    */
-  public static BinaryMessageEncoder<ProductEventAvro> getEncoder() {
+  public static BinaryMessageEncoder<ProductUpdatedEventAvro> getEncoder() {
     return ENCODER;
   }
 
@@ -44,7 +44,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
    * Return the BinaryMessageDecoder instance used by this class.
    * @return the message decoder used by this class
    */
-  public static BinaryMessageDecoder<ProductEventAvro> getDecoder() {
+  public static BinaryMessageDecoder<ProductUpdatedEventAvro> getDecoder() {
     return DECODER;
   }
 
@@ -53,12 +53,12 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
    * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
-  public static BinaryMessageDecoder<ProductEventAvro> createDecoder(SchemaStore resolver) {
+  public static BinaryMessageDecoder<ProductUpdatedEventAvro> createDecoder(SchemaStore resolver) {
     return new BinaryMessageDecoder<>(MODEL$, SCHEMA$, resolver);
   }
 
   /**
-   * Serializes this ProductEventAvro to a ByteBuffer.
+   * Serializes this ProductUpdatedEventAvro to a ByteBuffer.
    * @return a buffer holding the serialized data for this instance
    * @throws java.io.IOException if this instance could not be serialized
    */
@@ -67,12 +67,12 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
   }
 
   /**
-   * Deserializes a ProductEventAvro from a ByteBuffer.
+   * Deserializes a ProductUpdatedEventAvro from a ByteBuffer.
    * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a ProductEventAvro instance decoded from the given buffer
+   * @return a ProductUpdatedEventAvro instance decoded from the given buffer
    * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
    */
-  public static ProductEventAvro fromByteBuffer(
+  public static ProductUpdatedEventAvro fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
@@ -92,7 +92,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public ProductEventAvro() {}
+  public ProductUpdatedEventAvro() {}
 
   /**
    * All-args constructor.
@@ -106,7 +106,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
    * @param createdAt The new value for createdAt
    * @param updatedAt The new value for updatedAt
    */
-  public ProductEventAvro(java.lang.CharSequence id, java.lang.CharSequence name, java.lang.CharSequence description, java.lang.CharSequence category, java.nio.ByteBuffer price, java.lang.CharSequence currency, java.lang.CharSequence availability, java.time.Instant createdAt, java.time.Instant updatedAt) {
+  public ProductUpdatedEventAvro(java.lang.CharSequence id, java.lang.CharSequence name, java.lang.CharSequence description, java.lang.CharSequence category, java.nio.ByteBuffer price, java.lang.CharSequence currency, java.lang.CharSequence availability, java.time.Instant createdAt, java.time.Instant updatedAt) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -332,45 +332,45 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
   }
 
   /**
-   * Creates a new ProductEventAvro RecordBuilder.
-   * @return A new ProductEventAvro RecordBuilder
+   * Creates a new ProductUpdatedEventAvro RecordBuilder.
+   * @return A new ProductUpdatedEventAvro RecordBuilder
    */
-  public static com.core.avro.ProductEventAvro.Builder newBuilder() {
-    return new com.core.avro.ProductEventAvro.Builder();
+  public static com.core.avro.ProductUpdatedEventAvro.Builder newBuilder() {
+    return new com.core.avro.ProductUpdatedEventAvro.Builder();
   }
 
   /**
-   * Creates a new ProductEventAvro RecordBuilder by copying an existing Builder.
+   * Creates a new ProductUpdatedEventAvro RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new ProductEventAvro RecordBuilder
+   * @return A new ProductUpdatedEventAvro RecordBuilder
    */
-  public static com.core.avro.ProductEventAvro.Builder newBuilder(com.core.avro.ProductEventAvro.Builder other) {
+  public static com.core.avro.ProductUpdatedEventAvro.Builder newBuilder(com.core.avro.ProductUpdatedEventAvro.Builder other) {
     if (other == null) {
-      return new com.core.avro.ProductEventAvro.Builder();
+      return new com.core.avro.ProductUpdatedEventAvro.Builder();
     } else {
-      return new com.core.avro.ProductEventAvro.Builder(other);
+      return new com.core.avro.ProductUpdatedEventAvro.Builder(other);
     }
   }
 
   /**
-   * Creates a new ProductEventAvro RecordBuilder by copying an existing ProductEventAvro instance.
+   * Creates a new ProductUpdatedEventAvro RecordBuilder by copying an existing ProductUpdatedEventAvro instance.
    * @param other The existing instance to copy.
-   * @return A new ProductEventAvro RecordBuilder
+   * @return A new ProductUpdatedEventAvro RecordBuilder
    */
-  public static com.core.avro.ProductEventAvro.Builder newBuilder(com.core.avro.ProductEventAvro other) {
+  public static com.core.avro.ProductUpdatedEventAvro.Builder newBuilder(com.core.avro.ProductUpdatedEventAvro other) {
     if (other == null) {
-      return new com.core.avro.ProductEventAvro.Builder();
+      return new com.core.avro.ProductUpdatedEventAvro.Builder();
     } else {
-      return new com.core.avro.ProductEventAvro.Builder(other);
+      return new com.core.avro.ProductUpdatedEventAvro.Builder(other);
     }
   }
 
   /**
-   * RecordBuilder for ProductEventAvro instances.
+   * RecordBuilder for ProductUpdatedEventAvro instances.
    */
   @org.apache.avro.specific.AvroGenerated
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<ProductEventAvro>
-    implements org.apache.avro.data.RecordBuilder<ProductEventAvro> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<ProductUpdatedEventAvro>
+    implements org.apache.avro.data.RecordBuilder<ProductUpdatedEventAvro> {
 
     private java.lang.CharSequence id;
     private java.lang.CharSequence name;
@@ -391,7 +391,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.core.avro.ProductEventAvro.Builder other) {
+    private Builder(com.core.avro.ProductUpdatedEventAvro.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -432,10 +432,10 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
     }
 
     /**
-     * Creates a Builder by copying an existing ProductEventAvro instance
+     * Creates a Builder by copying an existing ProductUpdatedEventAvro instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.core.avro.ProductEventAvro other) {
+    private Builder(com.core.avro.ProductUpdatedEventAvro other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -489,7 +489,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'id'.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder setId(java.lang.CharSequence value) {
+    public com.core.avro.ProductUpdatedEventAvro.Builder setId(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.id = value;
       fieldSetFlags()[0] = true;
@@ -509,7 +509,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'id' field.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder clearId() {
+    public com.core.avro.ProductUpdatedEventAvro.Builder clearId() {
       id = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -529,7 +529,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'name'.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder setName(java.lang.CharSequence value) {
+    public com.core.avro.ProductUpdatedEventAvro.Builder setName(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.name = value;
       fieldSetFlags()[1] = true;
@@ -549,7 +549,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'name' field.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder clearName() {
+    public com.core.avro.ProductUpdatedEventAvro.Builder clearName() {
       name = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -569,7 +569,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'description'.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder setDescription(java.lang.CharSequence value) {
+    public com.core.avro.ProductUpdatedEventAvro.Builder setDescription(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.description = value;
       fieldSetFlags()[2] = true;
@@ -589,7 +589,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'description' field.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder clearDescription() {
+    public com.core.avro.ProductUpdatedEventAvro.Builder clearDescription() {
       description = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -609,7 +609,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'category'.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder setCategory(java.lang.CharSequence value) {
+    public com.core.avro.ProductUpdatedEventAvro.Builder setCategory(java.lang.CharSequence value) {
       validate(fields()[3], value);
       this.category = value;
       fieldSetFlags()[3] = true;
@@ -629,7 +629,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'category' field.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder clearCategory() {
+    public com.core.avro.ProductUpdatedEventAvro.Builder clearCategory() {
       category = null;
       fieldSetFlags()[3] = false;
       return this;
@@ -649,7 +649,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'price'.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder setPrice(java.nio.ByteBuffer value) {
+    public com.core.avro.ProductUpdatedEventAvro.Builder setPrice(java.nio.ByteBuffer value) {
       validate(fields()[4], value);
       this.price = value;
       fieldSetFlags()[4] = true;
@@ -669,7 +669,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'price' field.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder clearPrice() {
+    public com.core.avro.ProductUpdatedEventAvro.Builder clearPrice() {
       price = null;
       fieldSetFlags()[4] = false;
       return this;
@@ -689,7 +689,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'currency'.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder setCurrency(java.lang.CharSequence value) {
+    public com.core.avro.ProductUpdatedEventAvro.Builder setCurrency(java.lang.CharSequence value) {
       validate(fields()[5], value);
       this.currency = value;
       fieldSetFlags()[5] = true;
@@ -709,7 +709,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'currency' field.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder clearCurrency() {
+    public com.core.avro.ProductUpdatedEventAvro.Builder clearCurrency() {
       currency = null;
       fieldSetFlags()[5] = false;
       return this;
@@ -729,7 +729,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'availability'.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder setAvailability(java.lang.CharSequence value) {
+    public com.core.avro.ProductUpdatedEventAvro.Builder setAvailability(java.lang.CharSequence value) {
       validate(fields()[6], value);
       this.availability = value;
       fieldSetFlags()[6] = true;
@@ -749,7 +749,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'availability' field.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder clearAvailability() {
+    public com.core.avro.ProductUpdatedEventAvro.Builder clearAvailability() {
       availability = null;
       fieldSetFlags()[6] = false;
       return this;
@@ -769,7 +769,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'createdAt'.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder setCreatedAt(java.time.Instant value) {
+    public com.core.avro.ProductUpdatedEventAvro.Builder setCreatedAt(java.time.Instant value) {
       validate(fields()[7], value);
       this.createdAt = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
       fieldSetFlags()[7] = true;
@@ -789,7 +789,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'createdAt' field.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder clearCreatedAt() {
+    public com.core.avro.ProductUpdatedEventAvro.Builder clearCreatedAt() {
       fieldSetFlags()[7] = false;
       return this;
     }
@@ -808,7 +808,7 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'updatedAt'.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder setUpdatedAt(java.time.Instant value) {
+    public com.core.avro.ProductUpdatedEventAvro.Builder setUpdatedAt(java.time.Instant value) {
       validate(fields()[8], value);
       this.updatedAt = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
       fieldSetFlags()[8] = true;
@@ -828,16 +828,16 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'updatedAt' field.
       * @return This builder.
       */
-    public com.core.avro.ProductEventAvro.Builder clearUpdatedAt() {
+    public com.core.avro.ProductUpdatedEventAvro.Builder clearUpdatedAt() {
       fieldSetFlags()[8] = false;
       return this;
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public ProductEventAvro build() {
+    public ProductUpdatedEventAvro build() {
       try {
-        ProductEventAvro record = new ProductEventAvro();
+        ProductUpdatedEventAvro record = new ProductUpdatedEventAvro();
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.name = fieldSetFlags()[1] ? this.name : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.description = fieldSetFlags()[2] ? this.description : (java.lang.CharSequence) defaultValue(fields()[2]);
@@ -857,8 +857,8 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<ProductEventAvro>
-    WRITER$ = (org.apache.avro.io.DatumWriter<ProductEventAvro>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter<ProductUpdatedEventAvro>
+    WRITER$ = (org.apache.avro.io.DatumWriter<ProductUpdatedEventAvro>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -866,8 +866,8 @@ public class ProductEventAvro extends org.apache.avro.specific.SpecificRecordBas
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<ProductEventAvro>
-    READER$ = (org.apache.avro.io.DatumReader<ProductEventAvro>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader<ProductUpdatedEventAvro>
+    READER$ = (org.apache.avro.io.DatumReader<ProductUpdatedEventAvro>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

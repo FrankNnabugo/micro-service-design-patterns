@@ -1,0 +1,36 @@
+server:
+  port:
+    9095
+
+spring:
+  application:
+    name: order-ms
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/order
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+    hikari:
+      pool-name: HikariPool
+      maximum-pool-size: 10
+      minimum-idle: 2
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      auto-commit: true
+
+  kafka:
+    bootstrap-servers: localhost:29092
+    topics:
+      order: order
+      payment: payment

@@ -13,5 +13,5 @@ public record ProductUpdatedEvent(
         String availability,
         Instant createdAt,
         Instant updatedAt
-) {
+) implements ProductEventBase {
 }

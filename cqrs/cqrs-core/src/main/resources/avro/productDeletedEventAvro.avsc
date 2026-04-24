@@ -1,0 +1,11 @@
+{
+  "namespace": "com.core.avro",
+  "type": "record",
+  "name": "ProductDeletedEventAvro",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    }
+    ]
+  }
