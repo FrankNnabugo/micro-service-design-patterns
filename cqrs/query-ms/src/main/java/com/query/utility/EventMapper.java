@@ -25,4 +25,8 @@ public interface EventMapper {
     default BigDecimal mapPrice(ByteBuffer price, Schema schema) {
         return PriceConversion.toBigDecimal(price, schema);
     }
+
+    default String map(CharSequence value) {
+        return value == null ? null : value.toString();
+    }
 }

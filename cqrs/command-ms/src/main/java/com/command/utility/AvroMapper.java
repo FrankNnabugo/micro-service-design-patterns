@@ -16,11 +16,11 @@ import java.nio.ByteBuffer;
 @Mapper(componentModel = "spring", uses = PriceConversion.class)
 public interface AvroMapper {
     @Mapping(target = "price",
-            expression = "java(PriceConversion.toByte(event.getPrice(), ProductCreatedEventAvro.getClassSchema().getField(\"price\").schema()))")
+            expression = "java(PriceConversion.toByte(event.price(), ProductCreatedEventAvro.getClassSchema().getField(\"price\").schema()))")
     ProductCreatedEventAvro toCreatedAvro(ProductCreatedEvent event);
 
     @Mapping(target = "price",
-            expression = "java(PriceConversion.toByte(event.getPrice(), ProductUpdatedEventAvro.getClassSchema().getField(\"price\").schema()))")
+            expression = "java(PriceConversion.toByte(event.price(), ProductUpdatedEventAvro.getClassSchema().getField(\"price\").schema()))")
     ProductUpdatedEventAvro toUpdatedAvro(ProductUpdatedEvent event);
 
     ProductDeletedEventAvro toDeletedAvro(ProductDeletedEvent event);
