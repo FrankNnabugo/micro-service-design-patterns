@@ -31,3 +31,5 @@ spring:
 
   kafka:
     bootstrap-servers: localhost:29092
+    topics:
+      product: product
