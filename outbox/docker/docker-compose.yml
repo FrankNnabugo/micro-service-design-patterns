@@ -69,6 +69,8 @@ services:
 
   debezium-connect:
     image: debezium/connect:2.7.3.Final
+    container_name: debezium
+    hostname: debezium
     ports:
       - "8083:8083"
     depends_on:
@@ -79,11 +81,15 @@ services:
       inventory-db:
         condition: service_healthy
     environment:
-      BOOTSTRAP_SERVERS: kafka:9092
-      GROUP_ID: "1"
-      CONFIG_STORAGE_TOPIC: connect_configs
-      OFFSET_STORAGE_TOPIC: connect_offsets
-      STATUS_STORAGE_TOPIC: connect_statuses
+      CONNECT_ADVERTISED_HOST_NAME: debezium
+      CONNECT_ADVERTISED_PORT: http://0.0.0.0:8083
+      CONNECT_BOOTSTRAP_SERVERS: kafka:9092
+      CONNECT_GROUP_ID: 1
+      CONNECT_CONFIG_STORAGE_TOPIC: product
+      CONNECT_OFFSET_STORAGE_TOPIC: product
+      CONNECT_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+
 
 
   kafka-UI:

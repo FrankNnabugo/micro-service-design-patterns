@@ -10,15 +10,15 @@
         <module name="saga-core" />
         <module name="cqrs-core" />
       </profile>
-      <profile name="Annotation profile for order-ms" enabled="true">
+      <profile name="Annotation profile for product-ms" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.44/lombok-1.18.44.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.44/lombok-1.18.44.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="gateway-ms" />
+        <module name="product-ms" />
+        <module name="inventory-ms" />
       </profile>
       <profile name="Annotation profile for query-ms" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -29,23 +29,21 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
         </processorPath>
         <module name="command-ms" />
-        <module name="order-ms" />
-        <module name="order-ms (1)" />
-        <module name="payment-ms (1)" />
-        <module name="payment-ms" />
         <module name="query-ms" />
-        <module name="shipping-ms" />
       </profile>
-      <profile name="Annotation profile for product-ms" enabled="true">
+      <profile name="Annotation profile for payment-ms" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.44/lombok-1.18.44.jar" />
         </processorPath>
-        <module name="product-ms" />
-        <module name="inventory-ms" />
+        <module name="gateway-ms" />
+        <module name="payment-ms" />
+        <module name="order-ms" />
+        <module name="order-ms (1)" />
+        <module name="shipping-ms" />
+        <module name="payment-ms (1)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
