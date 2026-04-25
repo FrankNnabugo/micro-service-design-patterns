@@ -36,6 +36,16 @@
         <module name="query-ms" />
         <module name="shipping-ms" />
       </profile>
+      <profile name="Annotation profile for product-ms" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+        </processorPath>
+        <module name="product-ms" />
+        <module name="inventory-ms" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="command-ms.main" target="18" />
@@ -50,10 +60,12 @@
       <module name="command-ms.main" options="-parameters" />
       <module name="command-ms.test" options="-parameters" />
       <module name="gateway-ms" options="-parameters" />
+      <module name="inventory-ms" options="-parameters" />
       <module name="order-ms" options="-parameters" />
       <module name="order-ms (1)" options="-parameters" />
       <module name="payment-ms" options="-parameters" />
       <module name="payment-ms (1)" options="-parameters" />
+      <module name="product-ms" options="-parameters" />
       <module name="query-ms" options="-parameters" />
       <module name="query-ms.main" options="-parameters" />
       <module name="query-ms.test" options="-parameters" />
