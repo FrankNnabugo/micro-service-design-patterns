@@ -17,6 +17,8 @@
         <option value="$PROJECT_DIR$/saga/saga-core/pom.xml" />
         <option value="$PROJECT_DIR$/outbox/inventory-ms/pom.xml" />
         <option value="$PROJECT_DIR$/outbox/product-ms/pom.xml" />
+        <option value="$PROJECT_DIR$/outbox-cdc/product-ms/pom.xml" />
+        <option value="$PROJECT_DIR$/outbox-cdc/inventory-ms/pom.xml" />
       </list>
     </option>
   </component>
